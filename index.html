@@ -1,648 +1,1296 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>PopColors - Best Color Palette Generator | Trending Palettes</title>
+
   <meta name="description" content="Discover, create, and save playful color palettes with PopColors. The ultimate color palette (or pallet) generator for designers and developers. Explore trending color schemes.">
+
   <meta name="keywords" content="color palette, palette generator, color schemes, trending colors, pastel palettes, monochromatic, designers, web design, color palettes, color pallet, pallet, pallets">
+
   <meta name="author" content="PopColors">
+
   <meta name="robots" content="index, follow">
+
   <link rel="canonical" href="https://popcolors.com/">
+
   
+
   <!-- Open Graph Meta Tags -->
+
   <meta property="og:title" content="PopColors - Best Color Palette Generator">
+
   <meta property="og:description" content="Discover, create, and save playful color palettes with PopColors. The ultimate generator for your design needs.">
+
   <meta property="og:type" content="website">
+
   <meta property="og:url" content="https://popcolors.com/">
 
+
+
   <!-- Twitter Card Meta Tags -->
+
   <meta name="twitter:card" content="summary_large_image">
+
   <meta name="twitter:title" content="PopColors - Color Palette Generator">
+
   <meta name="twitter:description" content="Discover, create, and save playful color palettes with PopColors.">
+
   
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
   <script src="https://unpkg.com/lucide@latest"></script>
+
   
+
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
+
     tailwind.config = {
+
       theme: {
+
         extend: {
+
           colors: {
+
             pop: {
+
               bg: '#FFFDF5',
+
               fg: '#1E293B',
+
               muted: '#F1F5F9',
+
               accent: '#8B5CF6',
+
               secondary: '#F472B6',
+
               tertiary: '#FBBF24',
+
               quaternary: '#34D399',
+
             }
+
           },
+
           fontFamily: {
+
             outfit: ['Outfit', 'system-ui', 'sans-serif'],
+
             sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+
           },
+
           boxShadow: {
+
             'hard': '4px 4px 0px 0px #1E293B',
+
             'hard-hover': '6px 6px 0px 0px #1E293B',
+
             'hard-active': '0px 0px 0px 0px #1E293B',
+
             'hard-pink': '8px 8px 0px 0px #F472B6',
+
             'hard-sm': '2px 2px 0px 0px #1E293B',
+
           },
+
           transitionTimingFunction: {
+
             'bouncy': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+
           }
+
         }
+
       }
+
     }
+
   </script>
+
+
 
   <style>
+
     body {
+
       background-color: #FFFDF5;
+
       background-image: radial-gradient(#1E293B 1.5px, transparent 1.5px);
+
       background-size: 24px 24px;
+
       color: #1E293B;
+
       overflow-x: hidden;
+
     }
+
+
 
     /* Custom Scrollbar */
+
     ::-webkit-scrollbar {
+
       width: 12px;
+
     }
+
     ::-webkit-scrollbar-track {
+
       background: #FFFDF5;
+
       border-left: 2px solid #1E293B;
+
     }
+
     ::-webkit-scrollbar-thumb {
+
       background: #F472B6;
+
       border-left: 2px solid #1E293B;
+
       border-bottom: 2px solid #1E293B;
+
     }
+
     ::-webkit-scrollbar-thumb:hover {
+
       background: #8B5CF6;
+
     }
+
+
 
     /* Base Candy Button Styles (extracted for reuse in JS) */
+
     .btn-candy {
+
       position: relative;
+
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 0.5rem;
+
       font-weight: 700;
+
       padding: 0.75rem 1.5rem;
+
       border-radius: 9999px;
+
       border: 2px solid #1E293B;
+
       transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
     }
+
     
+
     .btn-primary {
+
       background-color: #8B5CF6;
+
       color: white;
+
       box-shadow: 4px 4px 0px 0px #1E293B;
+
     }
+
     .btn-primary:hover {
+
       box-shadow: 6px 6px 0px 0px #1E293B;
+
       transform: translate(-2px, -2px);
+
     }
+
     .btn-primary:active {
+
       box-shadow: 0px 0px 0px 0px #1E293B;
+
       transform: translate(4px, 4px);
+
     }
+
+
 
     .btn-secondary {
+
       background-color: #FBBF24;
+
       color: #1E293B;
+
       box-shadow: 4px 4px 0px 0px #1E293B;
+
     }
+
     .btn-secondary:hover {
+
       box-shadow: 6px 6px 0px 0px #1E293B;
+
       transform: translate(-2px, -2px);
+
     }
+
     .btn-secondary:active {
+
       box-shadow: 0px 0px 0px 0px #1E293B;
+
       transform: translate(4px, 4px);
+
     }
+
+
 
     .icon-btn {
+
       padding: 0.625rem;
+
       border-radius: 9999px;
+
       border: 2px solid #1E293B;
+
       box-shadow: 3px 3px 0px 0px #1E293B;
+
       transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       background-color: white;
+
     }
+
     .icon-btn:hover {
+
       box-shadow: 5px 5px 0px 0px #1E293B;
+
       transform: translate(-2px, -2px);
+
       background-color: #F472B6;
+
       color: white;
+
     }
+
     .icon-btn:active {
+
       box-shadow: 0px 0px 0px 0px #1E293B;
+
       transform: translate(2px, 2px);
+
     }
+
     .icon-btn.active-heart {
+
       background-color: #F472B6;
+
       color: white;
+
     }
+
     .icon-btn.active-heart i {
+
       fill: currentColor;
+
     }
+
+
 
     /* Animations */
+
     @keyframes float {
+
       0%, 100% { transform: translateY(0) rotate(0deg); }
+
       50% { transform: translateY(-20px) rotate(5deg); }
+
     }
+
     .animate-float {
+
       animation: float 6s ease-in-out infinite;
+
     }
+
     @keyframes popIn {
+
       0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+
       100% { opacity: 1; transform: scale(1) translateY(0); }
+
     }
+
     .animate-pop {
+
       animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
     }
+
+
 
     /* Generator Columns */
+
     .color-col {
+
       flex: 1;
+
       transition: background-color 0.4s ease, flex 0.3s ease;
+
       cursor: pointer;
+
     }
+
     @media (min-width: 768px) {
+
       .color-col:hover {
+
         flex: 1.2;
+
       }
+
     }
+
   </style>
+
 </head>
+
 <body class="min-h-screen flex flex-col">
 
+
+
   <nav class="h-[80px] bg-white border-b-2 border-pop-fg sticky top-0 z-40">
+
     <div class="h-full px-4 sm:px-6 flex items-center justify-between max-w-7xl mx-auto">
+
       
+
       <!-- Logo -->
+
       <div class="flex items-center gap-3 cursor-pointer group" onclick="switchView('discover')">
+
         <div class="w-12 h-12 bg-pop-accent border-2 border-pop-fg rounded-full shadow-hard-sm flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 ease-bouncy">
+
           <i data-lucide="palette" class="w-6 h-6"></i>
+
         </div>
+
         <span class="text-2xl font-outfit font-extrabold uppercase tracking-tight text-pop-fg" style="text-shadow: 2px 2px 0px #E2E8F0;">
+
           PopColors
+
         </span>
+
       </div>
+
+
 
       <!-- Desktop Nav -->
+
       <div class="hidden md:flex items-center gap-2 bg-pop-muted border-2 border-pop-fg rounded-full p-1.5 shadow-hard-sm">
+
         <button onclick="switchView('discover')" id="nav-discover" class="nav-tab flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-white border-2 border-pop-fg shadow-hard-sm text-pop-fg -translate-y-0.5">
+
           <i data-lucide="sparkles" class="w-4 h-4"></i> Discover
+
         </button>
+
         <button onclick="switchView('generator')" id="nav-generator" class="nav-tab flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:text-pop-fg border-2 border-transparent hover:bg-slate-200">
+
           <i data-lucide="wand-2" class="w-4 h-4"></i> Generator
+
         </button>
+
         <button onclick="switchView('saved')" id="nav-saved" class="nav-tab flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:text-pop-fg border-2 border-transparent hover:bg-slate-200">
+
           <i data-lucide="heart" class="w-4 h-4"></i> Saved
+
         </button>
+
       </div>
+
       
+
       <!-- Mobile Nav -->
+
       <div class="flex md:hidden gap-3">
+
         <button onclick="switchView('generator')" class="icon-btn bg-pop-accent text-white" style="box-shadow: 3px 3px 0px 0px #1E293B;">
+
           <i data-lucide="wand-2" class="w-5 h-5"></i>
+
         </button>
+
         <button onclick="switchView('saved')" class="icon-btn text-pop-fg">
+
           <i data-lucide="heart" class="w-5 h-5"></i>
+
         </button>
+
       </div>
+
     </div>
+
   </nav>
 
+
+
   <main id="app-content" class="flex-1 w-full relative">
+
     <!-- Views will be injected here via JS -->
+
   </main>
 
+
+
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-4 rounded-full border-2 border-pop-fg shadow-[6px_6px_0px_0px_#1E293B] flex items-center gap-3 transition-all duration-500 ease-bouncy z-50 opacity-0 translate-y-12 pointer-events-none bg-pop-quaternary">
+
     <div class="bg-white border-2 border-pop-fg rounded-full p-1">
+
       <i data-lucide="check" class="w-5 h-5 text-pop-fg" stroke-width="3"></i>
+
     </div>
+
     <span id="toast-msg" class="font-bold text-pop-fg font-outfit uppercase tracking-wide text-lg">Copied!</span>
+
   </div>
 
+
+
   <script>
+
     // --- UTILS & MATH ---
+
     const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
+
+
     const hslToHex = (h, s, l) => {
+
       l /= 100;
+
       const a = s * Math.min(l, 1 - l) / 100;
+
       const f = n => {
+
         const k = (n + h / 30) % 12;
+
         const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
         return Math.round(255 * color).toString(16).padStart(2, '0');
+
       };
+
       return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+
     };
+
+
 
     const getHarmonyHues = (baseHue, type) => {
+
       switch (type) {
+
         case 'monochromatic': return [baseHue, baseHue, baseHue, baseHue, baseHue];
+
         case 'analogous': return [baseHue, (baseHue + 30) % 360, (baseHue + 60) % 360, (baseHue + 90) % 360, (baseHue + 120) % 360];
+
         case 'complementary': return [baseHue, baseHue, baseHue, (baseHue + 180) % 360, (baseHue + 180) % 360];
+
         case 'triadic': return [baseHue, baseHue, (baseHue + 120) % 360, (baseHue + 240) % 360, (baseHue + 240) % 360];
+
         default: return [randomInt(0,360), randomInt(0,360), randomInt(0,360), randomInt(0,360), randomInt(0,360)];
+
       }
+
     };
+
+
 
     const generatePaletteColors = (type, baseHue = null) => {
+
       const h = baseHue !== null ? baseHue : randomInt(0, 360);
+
       const hues = getHarmonyHues(h, type);
+
       
+
       return hues.map(hue => {
+
         // Vary saturation and lightness slightly based on type to make it look good
+
         let s, l;
+
         if (type === 'monochromatic') {
+
           s = randomInt(60, 90);
+
           l = randomInt(20, 90); // wide range of lightness
+
         } else if (type === 'pastel') {
+
           s = randomInt(40, 70);
+
           l = randomInt(80, 95);
+
         } else if (type === 'dark') {
+
           s = randomInt(30, 60);
+
           l = randomInt(10, 30);
+
         } else {
+
           s = randomInt(60, 100);
+
           l = randomInt(40, 70);
+
         }
+
         return hslToHex(hue, s, l);
+
       });
+
     };
+
+
 
     // --- STATE ---
+
     let currentView = 'discover';
+
     let palettes = []; // Will hold our 500+ generated palettes
+
     let likedPalettes = JSON.parse(localStorage.getItem('popcolors_likes') || '[]');
+
     
+
     // Generator State
+
     let genColors = Array(5).fill().map(() => ({ hex: hslToHex(randomInt(0,360), 80, 60), locked: false }));
+
     let genHarmony = 'random';
+
     let discoverPage = 1;
+
     const ITEMS_PER_PAGE = 30;
 
+
+
     // --- STREAMING_CHUNK:Data Generation... ---
+
     const generateDatabase = () => {
+
       const types = ['random', 'analogous', 'monochromatic', 'complementary', 'triadic', 'pastel', 'dark'];
+
       for (let i = 0; i < 500; i++) {
+
         const type = types[Math.floor(Math.random() * types.length)];
+
         palettes.push({
+
           id: `pal_${i}`,
+
           colors: generatePaletteColors(type),
+
           likes: randomInt(10, 5000),
+
           views: randomInt(100, 20000),
+
           category: type
+
         });
+
       }
+
       // Sort by likes initially to simulate "Trending"
+
       palettes.sort((a, b) => b.likes - a.likes);
+
     };
+
+
 
     // --- TOAST SYSTEM ---
+
     let toastTimeout;
+
     const showToast = (message, colorClass = 'bg-pop-quaternary') => {
+
       const toast = document.getElementById('toast');
+
       const msg = document.getElementById('toast-msg');
+
       msg.textContent = message;
+
       
+
       // Reset classes
+
       toast.className = `fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-4 rounded-full border-2 border-pop-fg shadow-[6px_6px_0px_0px_#1E293B] flex items-center gap-3 transition-all duration-500 ease-bouncy z-50 ${colorClass}`;
+
       
+
       // Force reflow
+
       void toast.offsetWidth;
+
       
+
       // Show
+
       toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
+
       toast.classList.add('opacity-100', 'translate-y-0');
 
+
+
       clearTimeout(toastTimeout);
+
       toastTimeout = setTimeout(() => {
+
         toast.classList.remove('opacity-100', 'translate-y-0');
+
         toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
+
       }, 2500);
+
     };
+
+
 
     const copyToClipboard = (text) => {
+
       // Create a temporary textarea to ensure copying works everywhere
+
       const textarea = document.createElement('textarea');
+
       textarea.value = text;
+
       textarea.style.position = 'fixed';
+
       textarea.style.opacity = '0';
+
       document.body.appendChild(textarea);
+
       textarea.select();
+
       
+
       try {
+
         document.execCommand('copy');
+
         const colors = ['bg-pop-quaternary', 'bg-pop-secondary', 'bg-pop-tertiary', 'bg-pop-accent'];
+
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
         showToast(`Copied ${text}!`, randomColor);
+
       } catch (err) {
+
         console.error('Failed to copy', err);
+
       } finally {
+
         document.body.removeChild(textarea);
+
       }
+
     };
+
+
 
     // --- STREAMING_CHUNK:HTML Templates... ---
+
     const createPaletteCard = (palette, index) => {
+
       const isLiked = likedPalettes.includes(palette.id);
+
       const delay = (index % 30) * 0.05; // Stagger animation
+
       
+
       let colorsHtml = palette.colors.map(hex => `
+
         <div class="flex-1 h-full border-r-2 border-pop-fg last:border-r-0 relative flex justify-center items-end pb-3 transition-all duration-300 ease-out hover:flex-[1.5] cursor-pointer group/color"
+
              style="background-color: ${hex}"
+
              onclick="copyToClipboard('${hex}')">
+
           <div class="opacity-0 group-hover/color:opacity-100 absolute bottom-3 translate-y-4 group-hover/color:translate-y-0 transition-all duration-300 ease-bouncy">
+
             <span class="bg-white border-2 border-pop-fg text-pop-fg px-2 py-1.5 rounded-lg text-xs font-bold shadow-hard-sm">
+
               ${hex}
+
             </span>
+
           </div>
+
         </div>
+
       `).join('');
+
+
 
       return `
+
         <div class="bg-white border-2 border-pop-fg rounded-2xl overflow-hidden shadow-hard hover:shadow-hard-pink hover:-translate-y-2 hover:-rotate-1 transition-all duration-300 ease-bouncy flex flex-col group animate-pop" style="animation-delay: ${delay}s; opacity: 0; animation-fill-mode: forwards;">
+
           
+
           <div class="flex h-40 w-full">
+
             ${colorsHtml}
+
           </div>
+
+
 
           <div class="p-4 flex items-center justify-between bg-white border-t-2 border-pop-fg">
+
             <div class="flex items-center gap-3">
+
               <button onclick="toggleLike('${palette.id}')" class="icon-btn w-12 h-12 p-0 flex justify-center items-center ${isLiked ? 'active-heart' : ''}">
+
                 <i data-lucide="heart" class="w-5 h-5"></i>
+
               </button>
+
               <div class="flex flex-col">
+
                 <span class="font-bold text-pop-fg font-outfit text-xl leading-tight">${(palette.likes + (isLiked ? 1 : 0)).toLocaleString()}</span>
+
                 <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Likes</span>
+
               </div>
+
             </div>
+
             <button onclick="copyToClipboard('${palette.colors.join(', ')}')" class="icon-btn w-12 h-12 p-0 flex justify-center items-center hover:bg-pop-accent">
+
               <i data-lucide="copy" class="w-5 h-5"></i>
+
             </button>
+
           </div>
+
         </div>
+
       `;
+
     };
+
+
 
     const toggleLike = (id) => {
+
       if (likedPalettes.includes(id)) {
+
         likedPalettes = likedPalettes.filter(pId => pId !== id);
+
       } else {
+
         likedPalettes.push(id);
+
       }
+
       localStorage.setItem('popcolors_likes', JSON.stringify(likedPalettes));
+
       
+
       // Optimistic UI update - re-render current view to reflect heart change
+
       if (currentView === 'discover') renderDiscover(true);
+
       else if (currentView === 'saved') renderSaved();
+
     };
+
+
 
     // --- STREAMING_CHUNK:View Renderers... ---
+
     const renderDiscover = (append = false) => {
+
       const container = document.getElementById('app-content');
+
       
+
       const palettesToShow = palettes.slice(0, discoverPage * ITEMS_PER_PAGE);
+
       const gridHtml = palettesToShow.map((p, i) => createPaletteCard(p, i)).join('');
 
+
+
       if (!append) {
+
         container.innerHTML = `
+
           <div class="pb-24">
+
             <!-- Hero -->
+
             <div class="relative pt-20 pb-24 px-4 text-center overflow-hidden border-b-2 border-pop-fg bg-pop-bg">
+
               <!-- Decorative Elements -->
+
               <div class="absolute top-10 left-10 md:left-1/4 w-32 h-32 bg-pop-tertiary border-2 border-pop-fg rounded-full shadow-hard -z-10 animate-float"></div>
+
               <div class="absolute bottom-10 right-10 md:right-1/4 w-24 h-24 bg-pop-secondary border-2 border-pop-fg rotate-45 shadow-hard -z-10 animate-float" style="animation-delay: 1s;"></div>
+
               
+
               <div class="max-w-4xl mx-auto relative z-10">
+
                 <h1 class="text-5xl md:text-8xl font-outfit font-extrabold text-pop-fg mb-6 uppercase tracking-tight" style="text-shadow: 4px 4px 0px #F472B6, 8px 8px 0px #1E293B">
+
                   Color Palettes<br/>That Pop.
+
                 </h1>
+
                 <p class="text-xl md:text-2xl font-bold text-pop-fg mb-10 max-w-xl mx-auto bg-white inline-block px-8 py-3 border-2 border-pop-fg shadow-hard rounded-2xl -rotate-2">
+
                   Infinite playful color palettes (and pallets!) for your next big idea.
+
                 </p>
+
                 <div class="flex justify-center gap-4 flex-wrap">
+
                   <button onclick="switchView('generator')" class="btn-candy btn-primary text-lg px-8 py-4">
+
                     <i data-lucide="wand-2" class="w-5 h-5"></i> Start Generating
+
                   </button>
+
                   <button onclick="document.getElementById('palette-grid').scrollIntoView({behavior: 'smooth'})" class="btn-candy btn-secondary text-lg px-8 py-4">
+
                     Explore Trending
+
                   </button>
+
                 </div>
+
               </div>
+
             </div>
+
+
 
             <!-- Toolbar -->
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex justify-between items-center">
+
                <h2 class="text-3xl font-outfit font-extrabold uppercase">Trending Now</h2>
+
             </div>
+
+
 
             <!-- Grid -->
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+
               <div id="palette-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
                 ${gridHtml}
+
               </div>
+
               
+
               <div class="mt-16 text-center">
+
                 <button onclick="loadMore()" class="btn-candy bg-white text-pop-fg hover:bg-pop-secondary hover:text-white text-lg">
+
                   Load More Palettes <i data-lucide="arrow-down" class="w-5 h-5"></i>
+
                 </button>
+
               </div>
+
             </div>
+
           </div>
+
         `;
+
       } else {
+
         // If appending, just update the grid
+
         document.getElementById('palette-grid').innerHTML = gridHtml;
+
       }
+
       lucide.createIcons();
+
     };
+
+
 
     const loadMore = () => {
+
       discoverPage++;
+
       renderDiscover(true);
+
     };
+
+
 
     const renderSaved = () => {
+
       const container = document.getElementById('app-content');
+
       const saved = palettes.filter(p => likedPalettes.includes(p.id));
+
       
+
       let contentHtml = '';
+
       if (saved.length === 0) {
+
         contentHtml = `
+
           <div class="text-center py-32 bg-white border-4 border-dashed border-pop-fg rounded-3xl max-w-2xl mx-auto mt-12 shadow-hard">
+
             <div class="w-24 h-24 bg-pop-muted border-2 border-pop-fg rounded-full mx-auto flex items-center justify-center mb-6 shadow-hard-sm">
+
               <i data-lucide="heart-crack" class="w-10 h-10 text-slate-400"></i>
+
             </div>
+
             <h3 class="text-3xl font-bold font-outfit text-pop-fg mb-4 uppercase">Your sticker book is empty!</h3>
+
             <p class="text-lg text-slate-500 font-bold mb-8">Go explore and heart some palettes to save them here.</p>
+
             <button onclick="switchView('discover')" class="btn-candy btn-primary">
+
               <i data-lucide="sparkles"></i> Explore Palettes
+
             </button>
+
           </div>
+
         `;
+
       } else {
+
         contentHtml = `
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
+
             ${saved.map((p, i) => createPaletteCard(p, i)).join('')}
+
           </div>
+
         `;
+
       }
 
+
+
       container.innerHTML = `
+
         <div class="min-h-[calc(100vh-80px)] bg-pop-bg p-6 md:p-12">
+
           <div class="max-w-7xl mx-auto">
+
             <h1 class="text-5xl md:text-7xl font-outfit font-extrabold text-pop-fg mb-4 uppercase" style="text-shadow: 4px 4px 0px #34D399">Sticker Book</h1>
+
             <p class="text-xl font-bold text-pop-fg bg-pop-quaternary inline-block px-6 py-2 border-2 border-pop-fg rounded-xl shadow-hard-sm -rotate-1">
+
               ${saved.length} palettes collected.
+
             </p>
+
             ${contentHtml}
+
           </div>
+
         </div>
+
       `;
+
       lucide.createIcons();
+
     };
+
+
 
     // --- STREAMING_CHUNK:Generator Logic & Rendering... ---
+
     const handleGenerate = () => {
+
       const newColors = generatePaletteColors(genHarmony);
+
       genColors = genColors.map((c, i) => c.locked ? c : { hex: newColors[i] || newColors[0], locked: false });
+
       renderGenerator(true); // true = update DOM instead of full re-render
+
     };
+
+
 
     const toggleLock = (index) => {
+
       genColors[index].locked = !genColors[index].locked;
+
       renderGenerator(true);
+
     };
+
+
 
     const changeHarmony = (e) => {
+
       genHarmony = e.target.value;
+
     };
+
+
 
     const renderGenerator = (updateOnly = false) => {
+
       const container = document.getElementById('app-content');
+
       
+
       const columnsHtml = genColors.map((color, idx) => `
+
         <div class="color-col border-r-2 border-b-2 md:border-b-0 border-pop-fg last:border-r-0 last:border-b-0 relative group flex flex-row md:flex-col items-center justify-center min-h-[120px]"
+
              style="background-color: ${color.hex}">
+
           
+
           <!-- Actions overlay -->
+
           <div class="flex flex-row md:flex-col gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:-translate-y-4 md:group-hover:translate-y-0 absolute md:relative right-4 md:right-auto">
+
             <button onclick="toggleLock(${idx})" class="icon-btn w-12 h-12 md:w-16 md:h-16 flex items-center justify-center ${color.locked ? 'bg-pop-fg text-white' : ''}">
+
               <i data-lucide="${color.locked ? 'lock' : 'unlock'}" class="w-5 h-5 md:w-6 md:h-6"></i>
+
             </button>
+
             <button onclick="copyToClipboard('${color.hex}')" class="icon-btn w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hover:bg-pop-accent">
+
               <i data-lucide="copy" class="w-5 h-5 md:w-6 md:h-6"></i>
+
             </button>
+
           </div>
+
           
+
           <!-- Hex Label -->
+
           <div class="absolute bottom-auto md:bottom-12 left-4 md:left-auto bg-white border-2 border-pop-fg px-4 py-2 md:px-6 md:py-3 rounded-xl shadow-hard-sm md:shadow-hard cursor-pointer" onclick="copyToClipboard('${color.hex}')">
+
             <span class="text-lg md:text-2xl font-bold font-outfit text-pop-fg tracking-wide">${color.hex}</span>
+
           </div>
+
         </div>
+
       `).join('');
 
+
+
       if (updateOnly) {
+
         document.getElementById('generator-columns').innerHTML = columnsHtml;
+
         lucide.createIcons();
+
         return;
+
       }
+
+
 
       container.innerHTML = `
+
         <div class="h-[calc(100vh-80px)] flex flex-col relative overflow-hidden bg-pop-bg">
+
           
+
           <!-- Floating Toolbar -->
+
           <div class="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex flex-col md:flex-row gap-4 items-center bg-white border-2 border-pop-fg p-3 rounded-[2rem] shadow-hard animate-pop">
+
             
+
             <div class="relative">
+
               <select onchange="changeHarmony(event)" class="appearance-none bg-pop-muted border-2 border-pop-fg rounded-full pl-6 pr-10 py-3 outline-none font-bold text-pop-fg cursor-pointer hover:bg-slate-200 transition-colors">
+
                 <option value="random" ${genHarmony === 'random' ? 'selected' : ''}>Random Mix</option>
+
                 <option value="monochromatic" ${genHarmony === 'monochromatic' ? 'selected' : ''}>Monochromatic</option>
+
                 <option value="analogous" ${genHarmony === 'analogous' ? 'selected' : ''}>Analogous</option>
+
                 <option value="complementary" ${genHarmony === 'complementary' ? 'selected' : ''}>Complementary</option>
+
                 <option value="triadic" ${genHarmony === 'triadic' ? 'selected' : ''}>Triadic</option>
+
                 <option value="pastel" ${genHarmony === 'pastel' ? 'selected' : ''}>Pastel</option>
+
                 <option value="dark" ${genHarmony === 'dark' ? 'selected' : ''}>Dark</option>
+
               </select>
+
               <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"></i>
+
             </div>
 
+
+
             <button onclick="handleGenerate()" class="btn-candy btn-secondary w-full md:w-auto">
+
               <i data-lucide="wand-2" class="w-5 h-5"></i>
+
               Generate <span class="hidden md:inline ml-2 text-xs opacity-70 bg-pop-fg text-white px-2 py-0.5 rounded-full font-sans">SPACE</span>
+
             </button>
+
             
+
             <button onclick="copyToClipboard(genColors.map(c=>c.hex).join(', '))" class="icon-btn ml-auto md:ml-0 hidden md:flex" title="Copy All">
+
               <i data-lucide="copy" class="w-5 h-5"></i>
+
             </button>
+
           </div>
+
+
 
           <!-- Full height color columns -->
+
           <div id="generator-columns" class="flex-1 flex flex-col md:flex-row w-full mt-[120px] md:mt-0">
+
             ${columnsHtml}
+
           </div>
+
         </div>
+
       `;
+
       lucide.createIcons();
+
     };
+
+
 
     // --- STREAMING_CHUNK:Global Handlers & Initialization... ---
+
     
+
     // Spacebar to generate
+
     window.addEventListener('keydown', (e) => {
+
       if (currentView === 'generator' && e.code === 'Space') {
+
         if (e.target.tagName !== 'SELECT' && e.target.tagName !== 'BUTTON') {
+
           e.preventDefault();
+
           handleGenerate();
+
         }
+
       }
+
     });
+
+
 
     const updateNavActiveState = (viewId) => {
+
       document.querySelectorAll('.nav-tab').forEach(tab => {
+
         if (tab.id === `nav-${viewId}`) {
+
           tab.className = "nav-tab flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-white border-2 border-pop-fg shadow-hard-sm text-pop-fg -translate-y-0.5";
+
         } else {
+
           tab.className = "nav-tab flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 text-slate-500 hover:text-pop-fg border-2 border-transparent hover:bg-slate-200";
+
         }
+
       });
+
     };
+
+
 
     window.switchView = (viewId) => {
+
       currentView = viewId;
+
       updateNavActiveState(viewId);
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
       
+
       if (viewId === 'discover') renderDiscover();
+
       else if (viewId === 'generator') renderGenerator();
+
       else if (viewId === 'saved') renderSaved();
+
     };
 
+
+
     // Initialize App
+
     window.addEventListener('DOMContentLoaded', () => {
+
       generateDatabase();
+
       lucide.createIcons();
+
       switchView('discover');
+
     });
 
+
+
   </script>
+
 </body>
-</html>
+
+</html> 
+
